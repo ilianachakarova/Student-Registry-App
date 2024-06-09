@@ -10,17 +10,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
     - name: Use Node.js 18.x
       uses: actions/setup-node@v3
       with:
         node-version: 18.x
         cache: 'npm'
-    - run: npm install
-    - run: npm start
-    - run: npm test
+    - name: Install dependencies    
+      run: npm install
+    - run: npm node index.js
+    - name: Run integration tests 
+      run: npm test
